@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('Paso 3') {
+      steps {
+        mail(subject: 'Ejecucion Blue Ocean - Jenkins', body: 'Se ha ejecutado la integracion continua', to: 'julio_ibarguen82151@elpoli.edu.co')
+      }
+    }
+
   }
 }
