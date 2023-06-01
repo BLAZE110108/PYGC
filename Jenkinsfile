@@ -9,7 +9,7 @@ pipeline {
 
     stage('Paso 2') {
       steps {
-        bat(script: 'Robocopy C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\PGC_v2\\*.* C:\\pruebas\\apache-tomcat-9.0.73\\webapps\\ /e', label: 'MoveToTomCat', returnStatus: true, returnStdout: true)
+        bat(script: 'robocopy C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\PGC_v2\\ C:\\pruebas\\apache-tomcat-9.0.73\\webapps\\PGC_v2 /e', label: 'MoveToTomCat', returnStatus: true, returnStdout: true)
       }
     }
 
