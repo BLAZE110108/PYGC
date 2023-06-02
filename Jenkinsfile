@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'PGC_v2'
+    }
+
+  }
   stages {
     stage('Paso1') {
       steps {
