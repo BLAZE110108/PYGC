@@ -13,5 +13,14 @@ pipeline {
       }
     }
 
+    stage('Sonar Analisis') {
+      steps {
+        withSonarQubeEnv(installationName: 'Maven_Jenkins', envOnly: true) {
+          bat(script: 'mvn clean verify sonar:sonar -D sonar.projectKey=PGC_v3 -D sonar.projectName=PGC_v3 -D sonar.host.url=http://192.168.10.235:9000 -D sonar.token=sqp_ce919136d7dcaa8a9797fd952c54446efd0c795befd0c795b', label: 'Anslisis', returnStatus: true, returnStdout: true)
+        }
+
+      }
+    }
+
   }
 }
