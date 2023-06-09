@@ -13,11 +13,16 @@ pipeline {
       }
     }
 
-    stage('gotoproject') {
-      steps {
-        bat(script: 'cd C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\PGC_v2', label: 'gotoProject', returnStatus: true, returnStdout: true)
-      }
+    stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Maven_Jenkins';
+    withSonarQubeEnv() {
+      bat(script: 'C:\\pruebas\\apache-maven-3.9.2\bin\\mvn clean verify sonar:sonar -D sonar.projectKey=PGC_v3 -D sonar.projectName=PGC_v3 -D sonar.host.url=http://192.168.10.235:9000 -D sonar.token=sqp_ce919136d7dcaa8a9797fd952c54446efd0c795befd0c795b', label: 'Anslisis', returnStatus: true, returnStdout: true)
     }
+  }
+    
 
   }
 }
