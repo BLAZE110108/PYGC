@@ -16,4 +16,14 @@ pipeline {
   }
 }
 
-
+node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Maven_Jenkins';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=PGC_v3  -Dsonar.projectName='PGC_v3'"
+    }
+  }
+}
